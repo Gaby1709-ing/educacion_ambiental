@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioForge - Soluciones de Biochar & Biocarbón Orgánico</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bioDark: '#1B4332',
+                        bioMedium: '#2D6A4F',
+                        bioLight: '#F8F9FA',
+                        bioAccent: '#52B788',
+                        bioGold: '#D4A373',
+                        bioFire: '#E76F51',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-bioAccent selection:text-white">
+
+    <!-- Header / Navegación -->
+    <header class="sticky top-0 z-50 bg-bioLight/90 backdrop-blur-md border-b border-stone-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-bioDark flex items-center justify-center text-bioLight group-hover:bg-bioAccent transition-colors duration-300 shadow-md">
+                        <i class="fa-solid font-bold text-xl fa-leaf"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight text-bioDark font-serif">BioChar</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-6 items-center font-medium text-sm text-stone-700">
+                    <a href="#inicio" class="hover:text-bioDark transition-colors py-1 border-b-2 border-transparent hover:border-bioAccent">Inicio</a>
+                    <a href="#video-sec" class="hover:text-bioDark transition-colors py-1 border-b-2 border-transparent hover:border-bioAccent">Vídeo</a>
+                    <a href="#que-es" class="hover:text-bioDark transition-colors py-1 border-b-2 border-transparent hover:border-bioAccent">¿Qué es Biochar?</a>
+                    <a href="#juego" class="hover:text-bioDark transition-colors py-1 border-b-2 border-transparent hover:border-bioAccent">Minijuego</a>
+                    <a href="#usos" class="hover:text-bioDark transition-colors py-1 border-b-2 border-transparent hover:border-bioAccent">Usos</a>
+                    <a href="#impacto" class="hover:text-bioDark transition-colors py-1 border-b-2 border-transparent hover:border-bioAccent">Calculadora</a>
+                    <a href="#suscripcion" class="text-bioMedium font-bold hover:text-bioDark transition-colors py-1 border-b-2 border-transparent hover:border-bioAccent">Membresía & Hornos</a>
+                </nav>
+
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="#suscripcion" class="bg-bioAccent text-bioDark px-4 py-2.5 rounded-full hover:bg-bioMedium hover:text-white transition-all shadow-sm font-bold text-xs uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-crown"></i> Unirse Pro
+                    </a>
+                    <a href="#contacto" class="bg-bioDark text-bioLight px-4 py-2.5 rounded-full hover:bg-bioMedium transition-all shadow-sm font-medium text-sm">
+                        Contáctanos
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-bioDark p-2 rounded-lg focus:outline-none" aria-label="Abrir Menú">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-bioLight border-b border-stone-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block py-2 text-stone-700 font-medium hover:text-bioDark">Inicio</a>
+            <a href="#video-sec" class="block py-2 text-stone-700 font-medium hover:text-bioDark">Vídeo</a>
+            <a href="#que-es" class="block py-2 text-stone-700 font-medium hover:text-bioDark">¿Qué es Biochar?</a>
+            <a href="#juego" class="block py-2 text-bioMedium font-bold">Minijuego Interactivo</a>
+            <a href="#usos" class="block py-2 text-stone-700 font-medium hover:text-bioDark">Usos</a>
+            <a href="#impacto" class="block py-2 text-stone-700 font-medium hover:text-bioDark">Calculadora de CO₂</a>
+            <a href="#suscripcion" class="block py-2 text-bioMedium font-bold flex items-center gap-2"><i class="fa-solid fa-crown"></i> Membresía & Hornos Pro</a>
+            <a href="#contacto" class="block py-2 text-bioAccent font-semibold">Contáctanos</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HÉROE / SECCIÓN INICIAL -->
+        <section id="inicio" class="hero-bg text-bioLight py-20 lg:py-28 rounded-b-[2.5rem] relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-bioAccent text-xs tracking-wider uppercase font-bold backdrop-blur-sm border border-white/10">
+                            <i class="fa-solid fa-fire-burner"></i> Tecnología de Pirólisis Sustentable
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold leading-tight">
+                            El poder del biocarbón: <br><span class="italic text-bioAccent font-normal">suelos fértiles, futuro limpio.</span>
+                        </h1>
+                        <p class="text-stone-300 text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
+                            Transformamos la biomasa orgánica vegetal en biochar poroso de máxima pureza. Una solución científica para regenerar la humedad de la tierra, nutrir cultivos y capturar carbono de forma permanente.
+                        </p>
+                        <div class="pt-4 flex flex-wrap gap-4">
+                            <a href="#juego" class="bg-bioAccent text-bioDark font-bold px-7 py-3.5 rounded-full hover:bg-white transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-2">
+                                <i class="fa-solid fa-gamepad text-lg"></i> Jugar al Minijuego
+                            </a>
+                            <a href="#suscripcion" class="border border-white/30 text-white font-medium px-7 py-3.5 rounded-full hover:bg-white/10 transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-fire text-bioAccent"></i> Obtener tu Horno Pro
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/15 shadow-2xl relative">
+                            <div class="absolute -top-4 -right-4 w-12 h-12 bg-bioAccent text-bioDark rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                                CO₂
+                            </div>
+                            <h3 class="text-2xl font-serif font-bold text-white mb-3">Retención Permanente</h3>
+                            <p class="text-stone-200 text-sm mb-6 leading-relaxed">
+                                Cada metro cúbico de biochar producido logra fijar hasta <strong class="text-bioAccent font-semibold">1.2 toneladas de CO₂ equivalente</strong> en el suelo por siglos.
+                            </p>
+                            <div class="space-y-3 border-t border-white/10 pt-4 text-xs sm:text-sm text-stone-300">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-bioAccent"></i>
+                                    <span>Incrementa la retención de agua y humedad</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-bioAccent"></i>
+                                    <span>Refugio natural para microbiota benéfica</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-bioAccent"></i>
+                                    <span>Economía circular 100% libre de sintéticos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE VÍDEO CON OPCIÓN A (Archivo Local de Vídeo) -->
+        <section id="video-sec" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-8">
+                <span class="text-bioMedium font-bold uppercase tracking-wider text-xs">Presentación</span>
+                <h2 class="text-3xl font-serif font-bold text-bioDark mt-1">Conoce Nuestro Proceso en Vídeo</h2>
+                <p class="text-stone-600 text-sm mt-1">Visualiza el funcionamiento y transformación de la biomasa en BioForge.</p>
+            </div>
+            
+            <div class="bg-stone-900 rounded-3xl overflow-hidden shadow-2xl border border-stone-300 relative group aspect-video flex items-center justify-center">
+                <!-- Etiqueta de vídeo local (Opción A) -->
+                <video controls class="w-full h-full object-cover">
+                    <source src="254692.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+        </section>
+
+        <!-- EXPLICACIÓN EXTENDIDA DE BIOCHAR -->
+        <section id="que-es" class="py-16 bg-white border-y border-stone-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <span class="text-bioMedium font-bold text-xs uppercase tracking-widest">Fundamento Científico</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-bioDark mt-2">¿Qué es el Biochar y cómo funciona?</h2>
+                    <p class="text-stone-600 mt-4 leading-relaxed">
+                        El biochar es un carbón vegetal de estructura micro-porosa que se obtiene mediante **pirólisis**: el calentamiento de biomasa orgánica a altas temperaturas (400°C - 600°C) en ausencia controlada de oxígeno.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-bioLight p-8 rounded-2xl border border-stone-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-bioDark text-bioAccent rounded-xl flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-serif text-bioDark mb-3">Red Micro-porosa</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Posee millones de poros diminutos por gramo, funcionando como una esponja capaz de retener minerales, humedad y nutrientes evitando su lixiviación.
+                        </p>
+                    </div>
+
+                    <div class="bg-bioLight p-8 rounded-2xl border border-stone-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-bioDark text-bioAccent rounded-xl flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-bacterium"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-serif text-bioDark mb-3">Nido Microbiológico</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Brinda refugio a bacterias fijadoras de nitrógeno y hongos micorrízicos, protegiéndolos de variaciones térmicas y pesticidas.
+                        </p>
+                    </div>
+
+                    <div class="bg-bioLight p-8 rounded-2xl border border-stone-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-bioDark text-bioAccent rounded-xl flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-serif text-bioDark mb-3">Carbono Estable</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Impide que el carbono vegetal se descomponga en CO₂ o metano a la atmósfera, sellándolo de forma inerte en la tierra por siglos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MINIJUEGO INTERACTIVO -->
+        <section id="juego" class="py-20 bg-bioDark text-bioLight relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-8">
+                    <span class="bg-bioAccent text-bioDark px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-md">
+                        <i class="fa-solid fa-gamepad mr-1"></i> Experiencia Interactiva
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-3">¡Simulador de Fabricación BioForge!</h2>
+                    <p class="text-stone-300 text-sm mt-2">
+                        Arrastra la biomasa al horno, cierra el oxígeno y acierta el punto óptimo de temperatura en la barra oscilante.
+                    </p>
+                </div>
+
+                <div class="bg-stone-900 border-2 border-bioAccent/40 rounded-3xl p-6 sm:p-10 shadow-2xl relative min-h-[540px] flex flex-col justify-between">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6 text-xs sm:text-sm">
+                        <div class="flex items-center gap-2">
+                            <span id="step-badge-1" class="w-8 h-8 rounded-full bg-bioAccent text-bioDark font-bold flex items-center justify-center">1</span>
+                            <span id="step-title-1" class="font-bold text-white">Arrastrar Insumo</span>
+                        </div>
+                        <div class="w-8 sm:w-16 h-0.5 bg-white/20"></div>
+                        <div class="flex items-center gap-2">
+                            <span id="step-badge-2" class="w-8 h-8 rounded-full bg-white/10 text-stone-400 font-bold flex items-center justify-center">2</span>
+                            <span id="step-title-2" class="font-bold text-stone-400">Válvula O₂</span>
+                        </div>
+                        <div class="w-8 sm:w-16 h-0.5 bg-white/20"></div>
+                        <div class="flex items-center gap-2">
+                            <span id="step-badge-3" class="w-8 h-8 rounded-full bg-white/10 text-stone-400 font-bold flex items-center justify-center">3</span>
+                            <span id="step-title-3" class="font-bold text-stone-400">Punto de Temperatura</span>
+                        </div>
+                    </div>
+
+                    <!-- FASE 1 -->
+                    <div id="game-phase-1" class="space-y-6">
+                        <div class="text-center">
+                            <h3 class="text-xl font-serif font-bold text-bioAccent">Paso 1: Arrastra la biomasa orgánica al Horno de Pirólisis</h3>
+                            <p class="text-xs text-stone-300 mt-1">Arrastra cualquiera de los materiales desde el inventario y suéltalos en la boca del reactor.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center my-6">
+                            <div class="md:col-span-5 space-y-3">
+                                <span class="text-xs uppercase tracking-wider font-bold text-stone-400 block mb-2">Inventario de Biomasa:</span>
+                                
+                                <div id="item-wood" draggable="true" ondragstart="handleDragStart(event)" onclick="selectMaterialClick('wood')" class="drag-item p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-bioAccent flex items-center gap-4 transition-all">
+                                    <div class="w-12 h-12 bg-amber-900/60 text-amber-400 rounded-xl flex items-center justify-center text-2xl">
+                                        <i class="fa-solid fa-tree"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <h4 class="font-bold text-sm text-white">Madera y Podas</h4>
+                                        <p class="text-[11px] text-stone-400">Rica en lignina (Biochar Estructural)</p>
+                                    </div>
+                                </div>
+
+                                <div id="item-leaves" draggable="true" ondragstart="handleDragStart(event)" onclick="selectMaterialClick('leaves')" class="drag-item p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-bioAccent flex items-center gap-4 transition-all">
+                                    <div class="w-12 h-12 bg-emerald-900/60 text-emerald-400 rounded-xl flex items-center justify-center text-2xl">
+                                        <i class="fa-solid fa-leaf"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <h4 class="font-bold text-sm text-white">Hojas y Residuos</h4>
+                                        <p class="text-[11px] text-stone-400">Carbonización rápida (Biochar Poroso)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-7">
+                                <div id="drop-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" class="border-2 border-dashed border-white/20 bg-black/40 rounded-3xl p-8 text-center transition-all flex flex-col items-center justify-center min-h-[200px]">
+                                    <div id="drop-icon" class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-stone-500 text-3xl mb-3">
+                                        <i class="fa-solid fa-inbox"></i>
+                                    </div>
+                                    <h4 id="drop-text" class="text-base font-bold text-stone-300">Suelta la biomasa aquí</h4>
+                                    <p id="drop-subtext" class="text-xs text-stone-500 mt-1">Zona de carga del Reactor de Pirólisis</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="btn-to-phase2" onclick="startPhase2()" disabled class="w-full bg-stone-800 text-stone-500 font-bold py-3.5 rounded-xl cursor-not-allowed transition-all">
+                            Continuar al Reactor <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+
+                    <!-- FASE 2 -->
+                    <div id="game-phase-2" class="hidden space-y-6">
+                        <div class="text-center">
+                            <h3 class="text-xl font-serif font-bold text-bioAccent">Paso 2: Cierra la Válvula de Oxígeno (Condición Anaeróbica)</h3>
+                            <p class="text-xs text-stone-300 mt-1">Para hacer biochar en vez de cenizas, debes sellar el oxígeno antes de encender el fuego.</p>
+                        </div>
+
+                        <div class="bg-black/50 border border-white/10 rounded-2xl p-6 text-center space-y-4">
+                            <div class="flex justify-center items-center gap-6">
+                                <div class="text-center">
+                                    <span class="text-xs text-stone-400 block uppercase">Nivel de Oxígeno</span>
+                                    <span id="valve-oxygen-text" class="text-2xl font-bold text-blue-400">100% (Abierto)</span>
+                                </div>
+                                <div id="valve-icon" class="w-16 h-16 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center text-3xl border border-blue-400">
+                                    <i class="fa-solid fa-wind"></i>
+                                </div>
+                            </div>
+
+                            <button id="btn-valve" onclick="toggleValve()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg inline-flex items-center gap-2 text-sm">
+                                <i class="fa-solid fa-valve"></i> <span id="btn-valve-label">Hacer clic para CERRAR Válvula</span>
+                            </button>
+                        </div>
+
+                        <button id="btn-to-phase3" onclick="startPhase3()" disabled class="w-full bg-stone-800 text-stone-500 font-bold py-3.5 rounded-xl cursor-not-allowed transition-all">
+                            Válvula Sellada -> Ir al Control de Temperatura <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+
+                    <!-- FASE 3 -->
+                    <div id="game-phase-3" class="hidden space-y-6">
+                        <div class="text-center">
+                            <h3 class="text-xl font-serif font-bold text-bioFire">Paso 3: ¡Presiona DETENER en la Zona Verde!</h3>
+                            <p class="text-xs text-stone-300 mt-1">Haz clic en el botón justo cuando la aguja oscilante pase por el rango ideal de pirólisis (450°C - 550°C).</p>
+                        </div>
+
+                        <div class="bg-stone-950 p-6 rounded-2xl border border-white/10 space-y-4">
+                            <div class="flex justify-between items-center text-xs font-bold">
+                                <span class="text-blue-400">100°C (Frío)</span>
+                                <span class="text-bioAccent uppercase tracking-widest"><i class="fa-solid fa-fire-flame-curved"></i> Zona Óptima Biochar</span>
+                                <span class="text-red-500">800°C (Ceniza)</span>
+                            </div>
+
+                            <div class="w-full h-8 bg-stone-800 rounded-full relative overflow-hidden border border-white/20">
+                                <div class="absolute top-0 bottom-0 left-[35%] w-[30%] bg-bioAccent/40 border-x-2 border-bioAccent flex items-center justify-center">
+                                    <span class="text-[10px] font-bold text-bioAccent uppercase tracking-wider hidden sm:inline">Pirólisis Óptima</span>
+                                </div>
+                                <div id="timing-indicator" class="absolute top-0 bottom-0 w-2.5 bg-white shadow-[0_0_12px_#fff] rounded-full left-[0%] transition-none"></div>
+                            </div>
+
+                            <div class="text-center">
+                                <span id="live-temp-display" class="text-2xl font-bold font-serif text-amber-400">100 °C</span>
+                                <span id="live-temp-status" class="block text-xs text-stone-400">Calculando temperatura...</span>
+                            </div>
+                        </div>
+
+                        <button onclick="stopTimingGame()" class="w-full bg-bioFire hover:bg-orange-600 text-white font-extrabold text-lg py-4 rounded-xl shadow-xl hover:scale-[1.01] active:scale-95 transition-all uppercase tracking-wider flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-hand-pointer text-xl"></i> ¡DETENER EN LA ZONA VERDE!
+                        </button>
+                    </div>
+
+                    <!-- FASE 4 -->
+                    <div id="game-phase-4" class="hidden space-y-6 text-center">
+                        <div id="res-icon-wrapper" class="w-20 h-20 bg-bioAccent/20 border border-bioAccent rounded-full flex items-center justify-center text-4xl mx-auto text-bioAccent">
+                            <i id="res-icon" class="fa-solid fa-gem"></i>
+                        </div>
+
+                        <div>
+                            <h3 id="res-title" class="text-2xl sm:text-3xl font-serif font-bold text-white">¡Biochar de Calidad Premium!</h3>
+                            <p id="res-desc" class="text-xs sm:text-sm text-stone-300 mt-2 max-w-lg mx-auto">
+                                ¡Excelente precisión! Has logrado una pirólisis anaeróbica perfecta a la temperatura exacta.
+                            </p>
+                        </div>
+
+                        <div class="flex justify-center gap-2 text-2xl text-amber-400" id="res-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div>
+                                <span class="text-[10px] text-stone-400 block uppercase">Porosidad</span>
+                                <span id="res-porosity" class="text-sm sm:text-base font-bold text-bioAccent">98%</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-stone-400 block uppercase">Carbono Fijado</span>
+                                <span id="res-carbon" class="text-sm sm:text-base font-bold text-white">1.2 t/m³</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-stone-400 block uppercase">Rendimiento</span>
+                                <span id="res-yield" class="text-sm sm:text-base font-bold text-amber-400">Excelente</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                            <button onclick="resetGame()" class="w-full border border-white/30 text-white font-medium py-3 rounded-xl hover:bg-white/10 transition-all text-xs">
+                                <i class="fa-solid fa-rotate-right mr-1"></i> Volver a Jugar
+                            </button>
+                            <a href="#suscripcion" class="w-full bg-bioAccent text-bioDark font-bold py-3 rounded-xl hover:bg-white transition-all text-xs flex items-center justify-center gap-1">
+                                <i class="fa-solid fa-crown"></i> Conseguir Horno Pro Real
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- USOS Y APLICACIONES -->
+        <section id="usos" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-bioMedium font-bold text-xs uppercase tracking-widest">Aplicaciones Multisectoriales</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-bioDark mt-2">¿Dónde se utiliza el Biochar BioForge?</h2>
+                    <p class="text-stone-600 mt-2 text-sm sm:text-base">Haz clic en cada área para explorar los beneficios directos.</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-3 mb-10">
+                    <button onclick="switchTab('hogar')" id="tab-hogar" class="tab-btn active px-6 py-2.5 rounded-full border border-stone-300 font-semibold text-sm transition-all">
+                        <i class="fa-solid fa-house-chimney mr-2"></i> En el Hogar
+                    </button>
+                    <button onclick="switchTab('huertos')" id="tab-huertos" class="tab-btn px-6 py-2.5 rounded-full border border-stone-300 font-semibold text-sm transition-all">
+                        <i class="fa-solid fa-wheat-awn mr-2"></i> Huertos y Agricultura
+                    </button>
+                    <button onclick="switchTab('agua')" id="tab-agua" class="tab-btn px-6 py-2.5 rounded-full border border-stone-300 font-semibold text-sm transition-all">
+                        <i class="fa-solid fa-droplet mr-2"></i> Filtros de Agua
+                    </button>
+                </div>
+
+                <!-- Tab Hogar -->
+                <div id="content-hogar" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <span class="bg-bioAccent/20 text-bioDark font-bold px-3 py-1 rounded-md text-xs">Uso Doméstico</span>
+                        <h3 class="text-2xl font-serif font-bold text-bioDark">Deshumidificación y Purificación del Aire</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Colocado en saquitos micro-porosos dentro de armarios, zapatos, refrigeradores o habitaciones con exceso de humedad, absorbe humedad y malos olores de forma ecológica.
+                        </p>
+                        <ul class="space-y-2 text-sm text-stone-700">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Reutilizable hasta 2 años secándolo periódicamente al sol.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> 100% natural, sin perfumes sintéticos ni químicos.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-bioLight p-8 rounded-3xl border border-stone-200 text-center">
+                        <i class="fa-solid fa-wind text-6xl text-bioDark mb-4"></i>
+                        <h4 class="font-serif font-bold text-lg text-bioDark">BioForge Air</h4>
+                        <p class="text-xs text-stone-500 mt-2">Bolsitas purificadoras reutilizables para espacios cerrados.</p>
+                    </div>
+                </div>
+
+                <!-- Tab Huertos -->
+                <div id="content-huertos" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <span class="bg-bioAccent/20 text-bioDark font-bold px-3 py-1 rounded-md text-xs">Agronómico</span>
+                        <h3 class="text-2xl font-serif font-bold text-bioDark">Sustrato Vivo para Huertos y Macetas</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Inoculado con abono o compost, mejora la estructura física del suelo, reduce el consumo de agua de riego y multiplica el rendimiento de cultivos.
+                        </p>
+                        <ul class="space-y-2 text-sm text-stone-700">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Aumenta la retención hídrica hasta en un 30%.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Previene el lavado de fertilizantes por lixiviación.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-bioLight p-8 rounded-3xl border border-stone-200 text-center">
+                        <i class="fa-solid fa-seedling text-6xl text-bioDark mb-4"></i>
+                        <h4 class="font-serif font-bold text-lg text-bioDark">BioForge Terra</h4>
+                        <p class="text-xs text-stone-500 mt-2">Acondicionador de suelos listo para mezclar.</p>
+                    </div>
+                </div>
+
+                <!-- Tab Agua -->
+                <div id="content-agua" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <span class="bg-bioAccent/20 text-bioDark font-bold px-3 py-1 rounded-md text-xs">Filtración</span>
+                        <h3 class="text-2xl font-serif font-bold text-bioDark">Filtrado Natural de Aguas Grises</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Funciona como medio filtrante para atrapado de turbidez, metales pesados y residuos de jabón en sistemas de reutilización de agua para riego.
+                        </p>
+                        <ul class="space-y-2 text-sm text-stone-700">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Filtra sedimentos gruesos e impurezas.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Opción económica y sostenible frente a carbones minerales.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-bioLight p-8 rounded-3xl border border-stone-200 text-center">
+                        <i class="fa-solid fa-filter text-6xl text-bioDark mb-4"></i>
+                        <h4 class="font-serif font-bold text-lg text-bioDark">BioForge Aqua</h4>
+                        <p class="text-xs text-stone-500 mt-2">Lecho pirolítico filtrante de alta adsorción.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE SUSCRIPCIÓN Y PRODUCTOS -->
+        <section id="suscripcion" class="py-20 bg-stone-100 border-t border-stone-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bioDark text-bioAccent text-xs tracking-wider uppercase font-bold shadow-sm">
+                        <i class="fa-solid fa-crown"></i> Club Exclusivo BioForge Pro
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-bioDark mt-3">Obtén tu propio Horno para hacer Biochar y Productos en Casa</h2>
+                    <p class="text-stone-600 mt-3 text-sm sm:text-base leading-relaxed">
+                        Selecciona tu plan ideal. Al hacer clic se abrirá el formulario seguro de pedido para enviarte el equipo y productos directamente a domicilio.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                    <!-- PLAN 1 -->
+                    <div class="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs uppercase font-bold text-stone-400 tracking-wider mb-2">Inicial</div>
+                            <h3 class="text-2xl font-serif font-bold text-bioDark">Kit Semanal Hogar</h3>
+                            <div class="my-6">
+                                <span class="text-4xl font-extrabold text-bioDark">$19</span>
+                                <span class="text-stone-500 text-sm"> / mes</span>
+                            </div>
+                            <p class="text-stone-600 text-sm mb-6">Ideal para jardinería urbana, plantas de interior y purificación de aire casera.</p>
+                            
+                            <ul class="space-y-3 text-xs sm:text-sm text-stone-700 border-t border-stone-100 pt-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> 5 kg de Biochar activado mensual</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> 2 Bolsitas purificadoras BioForge Air</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Guía digital de cultivo avanzado</li>
+                            </ul>
+                        </div>
+                        <div class="pt-8">
+                            <button onclick="openCheckoutModal('Kit Semanal Hogar', 19)" class="w-full bg-stone-200 hover:bg-stone-300 text-bioDark font-bold py-3.5 rounded-xl transition-all text-sm cursor-pointer">
+                                Suscribirme por $19/mes
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PLAN 2 PRO -->
+                    <div class="bg-bioDark text-white rounded-3xl p-8 border-2 border-bioAccent shadow-2xl flex flex-col justify-between relative transform md:-translate-y-2">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-bioAccent text-bioDark text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow">
+                            Más Popular &bull; Incluye Horno
+                        </div>
+
+                        <div>
+                            <div class="text-xs uppercase font-bold text-bioAccent tracking-wider mb-2">Membresía Pro Master</div>
+                            <h3 class="text-2xl sm:text-3xl font-serif font-bold">Productor Autónomo</h3>
+                            <div class="my-6">
+                                <span class="text-4xl sm:text-5xl font-extrabold text-bioAccent">$49</span>
+                                <span class="text-stone-300 text-sm"> / mes</span>
+                            </div>
+                            <p class="text-stone-300 text-sm mb-6">Te ayudamos a conseguir y te enviamos tu <strong>Horno Portátil de Pirólisis Casero</strong> junto con envíos recurrentes.</p>
+                            
+                            <ul class="space-y-3 text-xs sm:text-sm text-stone-200 border-t border-white/10 pt-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> <strong>Horno de Pirólisis BioForge</strong> incluido (Envío Gratis)</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> 15 kg de Biochar mensual directo a casa</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Termómetro digital de alta temperatura</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Asesoría técnica en vivo con expertos</li>
+                            </ul>
+                        </div>
+                        <div class="pt-8">
+                            <button onclick="openCheckoutModal('Membresía Pro Master (Con Horno)', 49)" class="w-full bg-bioAccent hover:bg-emerald-500 text-bioDark font-extrabold py-4 rounded-xl transition-all shadow-lg text-sm uppercase tracking-wider cursor-pointer">
+                                ¡Obtener mi Horno & Suscribirme!
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PLAN 3 -->
+                    <div class="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs uppercase font-bold text-stone-400 tracking-wider mb-2">Agrícola</div>
+                            <h3 class="text-2xl font-serif font-bold text-bioDark">Fundo & Huertos Grandes</h3>
+                            <div class="my-6">
+                                <span class="text-4xl font-extrabold text-bioDark">$120</span>
+                                <span class="text-stone-500 text-sm"> / mes</span>
+                            </div>
+                            <p class="text-stone-600 text-sm mb-6">Diseñado para agricultores, viveros y proyectos de regeneración de suelos a gran escala.</p>
+                            
+                            <ul class="space-y-3 text-xs sm:text-sm text-stone-700 border-t border-stone-100 pt-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Horno Semi-Industrial de Alto Rendimiento</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> 100 kg de Biochar por mes</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-bioAccent"></i> Visita técnica de calibración anual</li>
+                            </ul>
+                        </div>
+                        <div class="pt-8">
+                            <button onclick="openCheckoutModal('Plan Fundo & Huertos Grandes', 120)" class="w-full bg-stone-200 hover:bg-stone-300 text-bioDark font-bold py-3.5 rounded-xl transition-all text-sm cursor-pointer">
+                                Seleccionar Plan Agro
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALCULADORA DE CARBONO / IMPACTO -->
+        <section id="impacto" class="py-20 bg-bioDark text-bioLight">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="text-bioAccent font-bold text-xs uppercase tracking-widest">Impacto Medible</span>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold">Calculadora de Captura de Carbono</h2>
+                        <p class="text-stone-300 text-sm leading-relaxed">
+                            Ingresa el tamaño de tu terreno o proyecto agrícola para calcular el beneficio ecológico inmediato.
+                        </p>
+
+                        <div class="bg-white/10 p-6 rounded-2xl border border-white/10 space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-stone-300 mb-2">Superficie de Cultivo / Jardín (m²):</label>
+                                <input type="number" id="calc-area" value="100" min="1" oninput="calculateImpact()" class="w-full bg-stone-800 border border-stone-600 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-bioAccent">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 pt-2 border-t border-white/10">
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-wider text-stone-400">Biochar Necesario</span>
+                                    <p id="calc-biochar" class="text-2xl font-bold text-bioAccent">30 kg</p>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-wider text-stone-400">CO₂ Capturado</span>
+                                    <p id="calc-co2" class="text-2xl font-bold text-white">90 kg</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
+                            <i class="fa-solid fa-clock-rotate-left text-3xl text-bioAccent mb-2"></i>
+                            <h4 class="font-serif font-bold text-lg">Cientos de Años</h4>
+                            <p class="text-xs text-stone-400 mt-1">Permanencia del carbono fijado en la estructura edáfica.</p>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
+                            <i class="fa-solid fa-droplet text-3xl text-bioAccent mb-2"></i>
+                            <h4 class="font-serif font-bold text-lg">Eficiencia de Riego</h4>
+                            <p class="text-xs text-stone-400 mt-1">Menos frecuencia de riego con mayor humedad constante.</p>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 text-center col-span-2">
+                            <i class="fa-solid fa-recycle text-3xl text-bioAccent mb-2"></i>
+                            <h4 class="font-serif font-bold text-lg">Residuo Cero</h4>
+                            <p class="text-xs text-stone-400 mt-1">Reaprovechamiento de biomasa vegetal sin quemas a cielo abierto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULARIO DE CONTACTO -->
+        <section id="contacto" class="py-20 bg-bioLight">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6">
+                <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-stone-200">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-serif font-bold text-bioDark">Contáctate con BioChar</h2>
+                        <p class="text-stone-600 text-sm mt-2">¿Tienes dudas o buscas biochar para tus proyectos? Escríbenos.</p>
+                    </div>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-bioDark uppercase mb-2">Nombre Completo</label>
+                                <input type="text" required placeholder="Tu nombre" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-bioDark">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-bioDark uppercase mb-2">Correo Electrónico</label>
+                                <input type="email" required placeholder="correo@ejemplo.com" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-bioDark">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-bioDark uppercase mb-2">Mensaje</label>
+                            <textarea rows="4" required placeholder="Describe tu proyecto o consulta..." class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-bioDark"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-bioDark text-bioLight font-bold py-4 rounded-xl hover:bg-bioMedium transition-all shadow-md cursor-pointer">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+
+                    <div id="form-message" class="hidden mt-4 p-4 rounded-xl bg-green-100 text-green-800 text-sm text-center font-medium">
+                        ¡Gracias por contactarnos! Un especialista te responderá pronto.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-bioDark text-bioLight border-t border-white/10 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-bioAccent flex items-center justify-center text-bioDark font-bold">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <span class="text-xl font-serif font-bold">BioForge</span>
+                    </div>
+                    <p class="text-xs text-stone-400 leading-relaxed">
+                        Desarrollo de biocarbón de alta pureza para revitalizar tierras agrícolas, filtrar agua y capturar carbono ecológicamente.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-sm text-white mb-4">Navegación</h4>
+                    <ul class="space-y-2 text-xs text-stone-400">
+                        <li><a href="#inicio" class="hover:text-bioAccent">Inicio</a></li>
+                        <li><a href="#que-es" class="hover:text-bioAccent">¿Qué es el Biochar?</a></li>
+                        <li><a href="#juego" class="hover:text-bioAccent">Minijuego Interactivo</a></li>
+                        <li><a href="#usos" class="hover:text-bioAccent">Usos y Aplicaciones</a></li>
+                        <li><a href="#suscripcion" class="hover:text-bioAccent font-semibold text-bioAccent">Membresía & Horno Pro</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-sm text-white mb-4">Contacto</h4>
+                    <p class="text-xs text-stone-400 leading-relaxed">
+                        León, Nicaragua.<br>
+                        Email: info@bioforge.com
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-6 text-center text-xs text-stone-500">
+                &copy; 2026 BioForge. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE CHECKOUT / PAGO INTERACTIVO -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-stone-400 hover:text-stone-700 text-xl cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="checkout-form-container">
+                <div class="mb-6">
+                    <span class="bg-bioAccent/20 text-bioDark font-bold px-3 py-1 rounded-full text-xs" id="modal-plan-tag">Membresía Pro</span>
+                    <h3 class="text-2xl font-serif font-bold text-bioDark mt-2" id="modal-plan-title">Completar Suscripción</h3>
+                    <p class="text-stone-600 text-xs mt-1">Total a pagar hoy: <strong class="text-bioDark text-sm" id="modal-plan-price">$49.00 / mes</strong></p>
+                </div>
+
+                <form onsubmit="handleCheckoutSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-bioDark uppercase mb-1">Nombre Completo</label>
+                        <input type="text" required id="ck-name" placeholder="Ej. Juan Pérez" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-bioDark">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-bioDark uppercase mb-1">Correo Electrónico</label>
+                            <input type="email" required id="ck-email" placeholder="correo@ejemplo.com" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-bioDark">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-bioDark uppercase mb-1">Teléfono</label>
+                            <input type="tel" required id="ck-phone" placeholder="+505 8888 8888" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-bioDark">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-bioDark uppercase mb-1">Dirección de Envío (Para tu Horno / Kit)</label>
+                        <textarea rows="2" required id="ck-address" placeholder="Ciudad, Barrio, Calle, Número de casa..." class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-bioDark"></textarea>
+                    </div>
+
+                    <div class="border-t border-stone-100 pt-3">
+                        <label class="block text-xs font-bold text-bioDark uppercase mb-1">Datos de Tarjeta (Simulador Seguro)</label>
+                        <div class="relative">
+                            <input type="text" required maxlength="19" placeholder="4532 •••• •••• ••••" class="w-full bg-stone-50 border border-stone-200 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-bioDark font-mono">
+                            <i class="fa-regular fa-credit-card absolute left-3.5 top-3 text-stone-400"></i>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mt-2">
+                            <input type="text" required maxlength="5" placeholder="MM/AA" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-bioDark font-mono text-center">
+                            <input type="password" required maxlength="4" placeholder="CVV" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-bioDark font-mono text-center">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-bioAccent hover:bg-emerald-500 text-bioDark font-extrabold py-3.5 rounded-xl transition-all shadow-md text-sm uppercase tracking-wider mt-2 cursor-pointer">
+                        Confirmar Pago & Enviar Pedido
+                    </button>
+                </form>
+            </div>
+
+            <!-- Pantalla de Éxito -->
+            <div id="checkout-success" class="hidden text-center py-8 space-y-4">
+                <div class="w-20 h-20 bg-bioAccent/20 text-bioAccent border-2 border-bioAccent rounded-full flex items-center justify-center text-4xl mx-auto">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="text-2xl font-serif font-bold text-bioDark">¡Pedido Exitoso!</h3>
+                <p class="text-stone-600 text-xs sm:text-sm max-w-sm mx-auto">
+                    Hemos procesado tu suscripción correctamente. Tu <strong id="success-plan-name">Horno y Kit BioForge</strong> ya están siendo preparados para despacho a tu dirección.
+                </p>
+                <div class="bg-stone-50 p-4 rounded-xl text-xs text-stone-500 border border-stone-200">
+                    Código de seguimiento: <strong class="text-bioDark font-mono">BF-2026-9482X</strong>
+                </div>
+                <button onclick="closeCheckoutModal()" class="w-full bg-bioDark text-white font-bold py-3 rounded-xl hover:bg-bioMedium transition-all text-sm cursor-pointer">
+                    Entendido, Volver al Sitio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JavaScript externo -->
+    <script src="script.js"></script>
+</body>
+</html>

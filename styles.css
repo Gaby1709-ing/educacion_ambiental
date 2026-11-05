@@ -1,0 +1,46 @@
+body {
+    background-color: #F8F9FA;
+    color: #1D2D44;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    touch-action: manipulation;
+}
+
+.hero-bg {
+    background-color: #1B4332;
+    background-image: radial-gradient(circle at 85% 20%, rgba(82, 183, 136, 0.15) 0%, transparent 45%);
+}
+
+.tab-btn.active {
+    background-color: #1B4332;
+    color: #F8F9FA;
+    border-color: #1B4332;
+}
+
+.drag-item {
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.drag-item:active {
+    cursor: grabbing;
+}
+
+.drag-over {
+    border-color: #52B788 !important;
+    background-color: rgba(82, 183, 136, 0.2) !important;
+    transform: scale(1.02);
+}
+
+@keyframes pulse-flame {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.18); opacity: 1; }
+}
+
+.animate-flame {
+    animation: pulse-flame 0.5s infinite ease-in-out;
+}
+
+#timing-indicator {
+    will-change: left;
+}
